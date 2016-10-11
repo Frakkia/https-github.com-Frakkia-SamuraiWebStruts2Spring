@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd ">
+    
+    <bean id="myBatisUtil" class="it.consorzioformaweb.model.dao.impl.MyBatisUtil"></bean>
+    <bean id="sessionFactory" class="org.apache.ibatis.session.SqlSessionFactory" factory-bean="myBatisUtil" factory-method="getSessionFactory"></bean>
+	<bean id="torneoDAO" class="it.consorzioformaweb.model.dao.impl.TorneoMyBatisDAO">
+		<constructor-arg ref="sessionFactory"/>
+	</bean>    
+	<bean id="squadraDAO" class="it.consorzioformaweb.model.dao.impl.SquadraMyBatisDAO"></bean>
+    <bean id="societaDAO" class="it.consorzioformaweb.model.dao.impl.SocietaMyBatisDAO"></bean>
+    <bean id="atletaDAO" class="it.consorzioformaweb.model.dao.impl.AtletaMyBatisDAO"></bean>
+</beans>
