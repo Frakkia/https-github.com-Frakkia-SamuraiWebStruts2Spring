@@ -1,3 +1,3 @@
-# SamuraiWebStruts2
+# SamuraiWebStruts2Spring
 
 Esercizio corso formazione
