@@ -1,6 +1,6 @@
 package it.consorzioformaweb.action;
 
-import it.consorzioformaweb.model.dao.impl.AtletaMyBatisDAO;
+import it.consorzioformaweb.model.dao.AtletaDAO;
 import it.consorzioformaweb.model.dto.Atleta;
 
 import java.io.IOException;
@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @SuppressWarnings("serial")
 public class AtletaAction extends ActionSupport{
 
+	private AtletaDAO atletaDAO;
 	private List<Atleta> atleti;
 	private Atleta atleta;
 	private String id;
@@ -33,15 +34,13 @@ public class AtletaAction extends ActionSupport{
 
 	
 	public String create() throws IOException{
-		AtletaMyBatisDAO dao = new AtletaMyBatisDAO();
-			dao.create(atleta);
+			atletaDAO.create(atleta);
 		return SUCCESS;
 	}
 	
 	public String delete() throws IOException{
-		AtletaMyBatisDAO dao = new AtletaMyBatisDAO();
-		atleta = dao.read(Integer.parseInt(id));
-		dao.delete(atleta);
+		atleta = atletaDAO.read(Integer.parseInt(id));
+		atletaDAO.delete(atleta);
 		return SUCCESS;
 	}
 	
@@ -65,5 +64,10 @@ public class AtletaAction extends ActionSupport{
 
 	public void setAtleta(Atleta atleta) {
 		this.atleta = atleta;
+	}
+
+
+	public void setAtletaDAO(AtletaDAO atletaDAO) {
+		this.atletaDAO = atletaDAO;
 	}
 }

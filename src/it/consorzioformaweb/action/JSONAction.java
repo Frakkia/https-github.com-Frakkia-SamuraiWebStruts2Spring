@@ -1,9 +1,9 @@
 package it.consorzioformaweb.action;
 
+import it.consorzioformaweb.model.dao.AtletaDAO;
 import it.consorzioformaweb.model.dao.SocietaDAO;
 import it.consorzioformaweb.model.dao.SquadraDAO;
 import it.consorzioformaweb.model.dao.TorneoDAO;
-import it.consorzioformaweb.model.dao.impl.AtletaMyBatisDAO;
 import it.consorzioformaweb.model.dto.Atleta;
 import it.consorzioformaweb.model.dto.ParameterObject;
 import it.consorzioformaweb.model.dto.Societa;
@@ -29,6 +29,7 @@ public class JSONAction {
 	private TorneoDAO torneoDAO;
 	private SquadraDAO squadraDAO;
 	private SocietaDAO societaDAO;
+	private AtletaDAO atletaDAO;
 	private ParameterObject po;
 	private List<Squadra> squadre;	
 	private List<Societa> societas;
@@ -56,22 +57,19 @@ public class JSONAction {
 		return "success";
 	}
 	
-	public String atletiJSON() throws IOException{
-		AtletaMyBatisDAO dao = new AtletaMyBatisDAO();
-		
+	public String atletiJSON() throws IOException{		
 		if (id_societa != 0 &&
 				id_societa != -1)
 		{	
-			atleti = dao.searchByIdSocieta(societa.getId());
+			atleti = atletaDAO.searchByIdSocieta(societa.getId());
 		}
 		else
-			atleti = dao.search();
+			atleti = atletaDAO.search();
 		return "success";
 	}
 	
 	public String atletiJSONNew() throws IOException{
-		AtletaMyBatisDAO dao = new AtletaMyBatisDAO();
-		atleti = dao.searchByAll(po);
+		atleti = atletaDAO.searchByAll(po);
 		return "success";
 	}
 	
@@ -183,6 +181,10 @@ public class JSONAction {
 
 	public void setSocietaDAO(SocietaDAO societaDAO) {
 		this.societaDAO = societaDAO;
+	}
+
+	public void setAtletaDAO(AtletaDAO atletaDAO) {
+		this.atletaDAO = atletaDAO;
 	}
 	
 	

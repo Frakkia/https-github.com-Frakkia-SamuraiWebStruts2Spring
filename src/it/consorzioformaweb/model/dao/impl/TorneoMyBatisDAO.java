@@ -1,26 +1,26 @@
 package it.consorzioformaweb.model.dao.impl;
 
+
 import it.consorzioformaweb.model.dao.TorneoDAO;
 import it.consorzioformaweb.model.dto.Torneo;
 
-import java.io.IOException;
-import java.io.Reader;
 import java.util.List;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class TorneoMyBatisDAO implements TorneoDAO {
+public class TorneoMyBatisDAO extends AbstractMyBatisDAO implements TorneoDAO {
 
 	private SqlSessionFactory sessionFactory;
 	private SqlSession session;
 	
-	public TorneoMyBatisDAO() throws IOException{
-		Reader reader = Resources.getResourceAsReader("SqlMapConfig.xml");
-		sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+	
+	
+	public TorneoMyBatisDAO(SqlSessionFactory sessionFactory) {
+		super(sessionFactory);
+
 	}
+
 	public List<Torneo> search(){
 		session = sessionFactory.openSession();
 		List<Torneo> result = session.selectList("TorneoMapping.getAll");

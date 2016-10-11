@@ -1,6 +1,7 @@
 package it.consorzioformaweb.model.dao.impl;
 
 
+import it.consorzioformaweb.model.dao.AtletaDAO;
 import it.consorzioformaweb.model.dto.Atleta;
 import it.consorzioformaweb.model.dto.ParameterObject;
 
@@ -13,7 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class AtletaMyBatisDAO {
+public class AtletaMyBatisDAO implements AtletaDAO{
 	private SqlSessionFactory sessionFactory;
 	private SqlSession session;
 	
@@ -28,7 +29,7 @@ public class AtletaMyBatisDAO {
 		return result;
 	}
 	
-	public List<Atleta> searchByIdSocieta(int id){
+	public List<Atleta> searchByIdSocieta(Integer id){
 		session = sessionFactory.openSession();
 		List<Atleta> result = session.selectList("AtletaMapping.getByIdSocieta",id);
 		session.close();
