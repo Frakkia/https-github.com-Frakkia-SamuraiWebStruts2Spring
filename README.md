@@ -1,2 +1,3 @@
-# SamuraiWebStruts2Spring
-SamuraiWeb with Spring Framework
+# SamuraiWebStruts2
+
+Esercizio corso formazione

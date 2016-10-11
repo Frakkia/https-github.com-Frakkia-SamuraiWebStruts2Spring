@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="../js/myFunctions.js"></script>
+
+<script type="text/javascript">$(initSelectSocieta);</script>
+<script type="text/javascript">$(initSelectSquadre);</script>
+<script type="text/javascript">$(initSelectTornei);</script>
+<script type="text/javascript">$(printTabella);</script>
+<title>Lista Tornei</title>
+</head>
+<body>
+
+Filtra Società: <select id="selectSocieta"></select>
+<script type="text/javascript">
+$('#selectSocieta').bind('change', printTabella);
+</script>
+Filtra Squadra: <select id="selectSquadra"></select>
+<script type="text/javascript">
+$('#selectSquadra').bind('change', printTabella);
+</script>
+Filtra Torneo: <select id="selectTorneo"></select>
+<script type="text/javascript">
+$('#selectTorneo').bind('change', printTabella);
+</script>
+<div id="target"></div>
+</body>
+</html>
