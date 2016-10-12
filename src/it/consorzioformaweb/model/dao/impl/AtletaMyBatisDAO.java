@@ -1,26 +1,22 @@
 package it.consorzioformaweb.model.dao.impl;
 
 
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import it.consorzioformaweb.model.dao.AtletaDAO;
 import it.consorzioformaweb.model.dto.Atleta;
 import it.consorzioformaweb.model.dto.ParameterObject;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.util.List;
+public class AtletaMyBatisDAO extends AbstractMyBatisDAO implements AtletaDAO{
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-public class AtletaMyBatisDAO implements AtletaDAO{
-	private SqlSessionFactory sessionFactory;
 	private SqlSession session;
 	
-	public AtletaMyBatisDAO() throws IOException{
-		Reader reader = Resources.getResourceAsReader("SqlMapConfig.xml");
-		sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+	public AtletaMyBatisDAO(SqlSessionFactory sessionFactory) throws IOException{
+		super(sessionFactory);
 	}
 	public List<Atleta> search(){
 		session = sessionFactory.openSession();

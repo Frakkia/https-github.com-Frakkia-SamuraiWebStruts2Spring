@@ -11,14 +11,11 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 public class TorneoMyBatisDAO extends AbstractMyBatisDAO implements TorneoDAO {
 
-	private SqlSessionFactory sessionFactory;
+	//private SqlSessionFactory sessionFactory;
 	private SqlSession session;
-	
-	
-	
+		
 	public TorneoMyBatisDAO(SqlSessionFactory sessionFactory) {
 		super(sessionFactory);
-
 	}
 
 	public List<Torneo> search(){

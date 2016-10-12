@@ -1,25 +1,22 @@
 package it.consorzioformaweb.model.dao.impl;
 
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import it.consorzioformaweb.model.dao.SocietaDAO;
 import it.consorzioformaweb.model.dto.Societa;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.util.List;
+public class SocietaMyBatisDAO extends AbstractMyBatisDAO implements SocietaDAO{
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-public class SocietaMyBatisDAO implements SocietaDAO{
-	private SqlSessionFactory sessionFactory;
 	private SqlSession session;
 	
-	public SocietaMyBatisDAO() throws IOException{
-		Reader reader = Resources.getResourceAsReader("SqlMapConfig.xml");
-		sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+	public SocietaMyBatisDAO(SqlSessionFactory sessionFactory) throws IOException{
+		super(sessionFactory);
 	}
+	
 	public List<Societa> search(){
 		session = sessionFactory.openSession();
 		List<Societa> result = session.selectList("SocietaMapping.getAll");

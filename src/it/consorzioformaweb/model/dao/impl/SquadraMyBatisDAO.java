@@ -1,26 +1,21 @@
 package it.consorzioformaweb.model.dao.impl;
 
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import it.consorzioformaweb.model.dao.SquadraDAO;
 import it.consorzioformaweb.model.dto.Squadra;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.util.List;
+public class SquadraMyBatisDAO extends AbstractMyBatisDAO implements SquadraDAO{
 
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-
-public class SquadraMyBatisDAO implements SquadraDAO{
-
-	private SqlSessionFactory sessionFactory;
 	private SqlSession session;
 	
-	public SquadraMyBatisDAO() throws IOException{
-		Reader reader = Resources.getResourceAsReader("SqlMapConfig.xml");
-		sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+	public SquadraMyBatisDAO(SqlSessionFactory sessionFactory) {
+		super(sessionFactory);
 	}
+	
 	public List<Squadra> search(){
 		session = sessionFactory.openSession();
 		List<Squadra> result = session.selectList("SquadraMapping.getAll");
